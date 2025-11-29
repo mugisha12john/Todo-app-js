@@ -1,1 +1,27 @@
 @import "tailwindcss";
+@import "tailwindcss";
+
+@theme {
+  --color-blue500: hsl(220, 98%, 61%);
+  --color-gray50: hsl(0, 0%, 98%);
+  --color-purple300: hsl(234, 39%, 85%);
+  --color-gray300: hsl(233, 11%, 84%);
+  --color-gray600: hsl(236, 9%, 61%);
+  --color-navy850: hsl(235, 19%, 35%);
+
+  --color-navy950: hsl(235, 21%, 11%);
+  --color-navy900: hsl(235, 24%, 19%);
+  --color-purple100: hsl(236, 33%, 92%);
+  --color-purple600: hsl(235, 16%, 43%);
+  --color-purple700: hsl(233, 14%, 35%);
+  --color-purple800: hsl(237, 14%, 26%);
+
+  --font-josefin: "Josefin Sans", sans-serif;
+  --text-body: 18px;
+
+  --bg-checkGradient: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+}
