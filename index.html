@@ -31,7 +31,7 @@
   </head>
   <body>
     <main
-      class="h-[100vh] relative w-full dark:bg-navy950 light:bg-gray50 text-white"
+      class="h-[100vh] relative w-full dark:bg-navy950 bg-gray50 text-white"
     >
       <section class="w-full h-72">
         <img
@@ -45,6 +45,72 @@
           alt="Background image"
         />
       </section>
+      <form
+        class="w-[500px] absolute left-1/3 h-96 mx-auto -mt-48 z-50 flex flex-col gap-6"
+      >
+        <!-- title and button to toggle dark mode -->
+        <div class="flex justify-between items-center">
+          <h1 class="text-4xl font-josefin font-bold tracking-[12px]">TODO</h1>
+          <button>
+            <img
+              src="../images/icon-moon.svg"
+              alt="Toggle dark mode"
+              class="dark:block"
+            />
+            <img
+              src="../images/icon-sun.svg"
+              alt="Toggle light mode"
+              class="dark:hidden"
+            />
+          </button>
+        </div>
+
+        <!-- input field to add new todo -->
+        <div
+          class="w-full h-12 bg-white dark:bg-navy900 rounded flex items-center px-4 gap-4"
+        >
+          <div
+            class="w-5 h-5 border-2 border-gray300 dark:border-navy700 rounded-full"
+          ></div>
+          <input
+            type="text"
+            placeholder="Create a new todo..."
+            class="w-full h-full  outline-none dark:bg-navy900 bg-gray50 placeholder:text-navy850 dark:placeholder:text-navy850 dark:text-gray600 text-black"
+          />
+        </div>
+        <!-- list of todos  -->
+        <div class="w-full h-72 bg-white dark:bg-navy900 rounded flex flex-col">
+          <ul class="flex-1 overflow-y-auto">
+            <!-- individual todo item -->
+            <li
+              class="w-full h-12 border-b border-gray300 dark:border-navy700 flex items-center px-4 gap-4"
+            >
+              <div
+                class="w-5 h-5 border-2 border-gray300 dark:border-navy700 rounded-full"
+              ></div>
+              <p class="flex-1 text-gray400 dark:text-navy700">
+                Complete online JavaScript course
+              </p>
+              <button>
+                <img src="../images/icon-cross.svg" alt="Delete todo" />
+              </button>
+            </li>
+            <!-- end of individual todo item -->
+          </ul>
+          <!-- footer of the todo list -->
+          <div
+            class="w-full h-12 border-t border-gray300 dark:border-navy700 flex items-center justify-between px-4 text-gray400 dark:text-navy700 text-sm"
+          >
+            <span>1 item left</span>
+            <div class="flex gap-4">
+              <button class="">All</button>
+              <button class="">Active</button>
+              <button class="">Completed</button>
+            </div>
+            <button class="">Clear Completed</button>
+          </div>
+        </div>
+      </form>
     </main>
   </body>
 </html>
