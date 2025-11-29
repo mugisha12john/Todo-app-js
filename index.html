@@ -30,9 +30,21 @@
     </style>
   </head>
   <body>
-    <main class="h-[100vh] w-full bg-navy900 text-white">
-      <h1 class="font-josefin text-5xl">welcome here</h1>
-      <h1 class="text-4xl">welcome here</h1>
+    <main
+      class="h-[100vh] relative w-full dark:bg-navy950 light:bg-gray50 text-white"
+    >
+      <section class="w-full h-72">
+        <img
+          src="../images/bg-desktop-dark.jpg"
+          class="w-full h-full object-cover dark:block"
+          alt="Background image"
+        />
+        <img
+          src="../images/bg-desktop-light.jpg"
+          class="w-full h-full object-cover dark:hidden"
+          alt="Background image"
+        />
+      </section>
     </main>
   </body>
 </html>
