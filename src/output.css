@@ -7,9 +7,14 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-amber-400: oklch(82.8% 0.189 84.429);
+    --color-red-700: oklch(50.5% 0.213 27.518);
+    --color-blue-300: oklch(80.9% 0.105 251.813);
+    --color-black: #000;
+    --color-white: #fff;
+    --spacing: 0.25rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --color-navy950: hsl(235, 21%, 11%);
   }
 }
 @layer base {
@@ -161,8 +166,14 @@
   }
 }
 @layer utilities {
+  .relative {
+    position: relative;
+  }
   .static {
     position: static;
+  }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
   }
   .contents {
     display: contents;
@@ -170,12 +181,84 @@
   .table {
     display: table;
   }
-  .bg-amber-400 {
-    background-color: var(--color-amber-400);
+  .h-72 {
+    height: calc(var(--spacing) * 72);
+  }
+  .h-\[100vh\] {
+    height: 100vh;
+  }
+  .h-full {
+    height: 100%;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .bg-blue-300 {
+    background-color: var(--color-blue-300);
+  }
+  .bg-\[url\(\'\.\.\/images\/bg-desktop-light\.jpg\'\)\] {
+    background-image: url('../images/bg-desktop-light.jpg');
+  }
+  .bg-cover {
+    background-size: cover;
+  }
+  .bg-center {
+    background-position: center;
+  }
+  .object-cover {
+    object-fit: cover;
+  }
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+  .pt-10 {
+    padding-top: calc(var(--spacing) * 10);
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-black {
+    color: var(--color-black);
+  }
+  .text-white {
+    color: var(--color-white);
   }
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
+  }
+  .dark\:block {
+    @media (prefers-color-scheme: dark) {
+      display: block;
+    }
+  }
+  .dark\:hidden {
+    @media (prefers-color-scheme: dark) {
+      display: none;
+    }
+  }
+  .dark\:bg-navy950 {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-navy950);
+    }
+  }
+  .dark\:bg-red-700 {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-red-700);
+    }
+  }
+  .dark\:bg-\[url\(\'\.\.\/images\/bg-desktop-dark\.jpg\'\)\] {
+    @media (prefers-color-scheme: dark) {
+      background-image: url('../images/bg-desktop-dark.jpg');
+    }
+  }
+  .dark\:text-white {
+    @media (prefers-color-scheme: dark) {
+      color: var(--color-white);
+    }
   }
 }
 @property --tw-outline-style {
