@@ -33,7 +33,7 @@ function activeListComponent(id, text) {
     "w-full h-12 border-b cursor-pointer border-gray300 dark:border-navy850 flex items-center px-4 gap-4";
 
   li.innerHTML = `
-    <div class="w-5 h-5 border-2 border-white dark:border-navy850 rounded-full cursor-pointer hover:border-blue500 dark:hover:border-blue500"></div>
+    <div id='${id}' class="w-5 h-5 border-2 border-white dark:border-navy850 rounded-full cursor-pointer hover:border-blue500 dark:hover:border-blue500"></div>
     <p class="flex-1 text-gray400 font-josefin dark:text-purple300">${text}</p>
     <button>
       <img src="../images/icon-cross.svg" alt="Delete todo" />
@@ -49,10 +49,10 @@ function completedListComponent(id, text) {
     "w-full h-12 border-b cursor-pointer border-gray300 dark:border-navy850 flex items-center px-4 gap-4";
 
   li.innerHTML = `
-     <div
-        class="w-5 h-5 border-2 border-white dark:border-navy850 rounded-full cursor-pointer hover:border-blue500 dark:hover:border-blue500"
+     <div id='${id}'
+        class="w-5 h-5 border-2 border-white bg-checkGradient flex justify-center items-center dark:border-navy850 rounded-full cursor-pointer hover:border-blue500 dark:hover:border-blue500"
       >
-       <img src="/images/icon-check.svg" alt="done task" />
+       <img src="../images/icon-check.svg" alt="done task" />
     </div>
     <p class="flex-1 text-gray400 font-josefin dark:text-purple300">${text}</p>
     <button>
@@ -87,46 +87,89 @@ const completedBtn = document.getElementById("completed-btn");
 const clearAllCompleted = document.getElementById("clear-all-completed");
 const remainItem = document.getElementById("remain");
 
-function activeFilter(event) {
-  event.preventDefault();
-  const activeItems = dataList.filter((item) => item.completed === false);
-  activeItems.forEach((id, item) => {
-    activeListComponent(id, item);
+function activeFilter(e) {
+  e.preventDefault();
+  listUl.innerHTML = "";
+  const d = document.createDocumentFragment();
+  const incompleteItems = dataList.filter((item) => item.completed === false);
+  incompleteItems.forEach((item, id) => {
+    d.appendChild(activeListComponent(id, item.text));
   });
+  return listUl.appendChild(d);
 }
-function completedFilter(event) {
-  event.preventDefault();
-  const activeItems = dataList.filter((item) => item.completed === true);
-  activeItems.forEach((id, item) => {
-    activeListComponent(id, item);
+function completedFilter(e) {
+  e.preventDefault();
+  listUl.innerHTML = "";
+  const d = document.createDocumentFragment();
+  const incompleteItems = dataList.filter((item) => item.completed === true);
+  incompleteItems.forEach((item, id) => {
+    d.appendChild(completedListComponent(id, item.text));
   });
+  return listUl.appendChild(d);
 }
 
 function remainListCount() {
   return dataList.filter((item) => item.completed === false).length;
 }
-// function allFilter() {}
-// function clearCompleted() {}
-// function leftItemsCount() {}
+function allFilter(e) {
+  e.preventDefault();
+  listUl.innerHTML = "";
+  const d = document.createDocumentFragment();
+  dataList.forEach((item, id) => {
+    if (item.completed === true) {
+      d.appendChild(completedListComponent(id, item.text));
+      return;
+    } else {
+      d.appendChild(activeListComponent(id, item.text));
+      return;
+    }
+  });
+  return listUl.appendChild(d);
+}
+function clearCompleted(e) {
+  e.preventDefault();
+  listUl.innerHTML = "";
+  const d = document.createDocumentFragment();
+  console.log(dataList.filter((item) => item.completed !== true));
+  const incompleteItems = dataList.filter((item) => item.completed !== true);
+  incompleteItems.forEach((item, id) => {
+    d.appendChild(activeListComponent(id, item.text));
+  });
+  return listUl.appendChild(d);
+}
 
-// allBtn.addEventListener("click", allFilter);
+
 activeBtn.addEventListener("click", activeFilter);
 completedBtn.addEventListener("click", completedFilter);
 
-// clearAllCompleted.addEventListener("click", clearCompleted);
+clearAllCompleted.addEventListener("click", clearCompleted);
 
 // console.log(dataList);
-document.addEventListener("click", (e) => {
-  if (e.target.closest("li")) {
-    const li = e.target.closest("li");
-    const id = parseInt(li.id, 10);
-    const item = dataList[id];
-    // if (!item.completed) {
-    //   li.replaceWith(completedListComponent(id, item.text));
-    //   item.completed = true;
-    // }
+listUl.addEventListener("click", (e) => {
+  e.preventDefault();
+  const li = e.target.closest("li");
+  if (!li) return;
+  const id = parseInt(li.id, 10);
+  const item = dataList[id];
+  // Handle delete button
+  if (e.target.closest("button")) {
+    li.remove();
+    dataList.splice(id, 1);
+
+    return (remainItem.innerText = `${remainListCount()} item left`);
+  }
+
+  // Handle circle div toggle
+  if (e.target.closest("div")) {
+    if (!item.completed) {
+      li.replaceWith(completedListComponent(id, item.text));
+      item.completed = true;
+      remainItem.innerText = `${remainListCount()} item left`;
+    } else {
+      li.replaceWith(activeListComponent(id, item.text));
+      item.completed = false;
+      remainItem.innerText = `${remainListCount()} item left`;
+    }
     console.log(item);
-    console.log(id);
-    console.log(li);
   }
 });
