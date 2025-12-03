@@ -46,7 +46,8 @@
 
       <!-- Todo form section -->
       <form
-        class="w-[500px] absolute left-1/3 mx-auto -mt-56 z-50 flex flex-col gap-6"
+        id="myForm"
+        class="w-[350px] left-5 -mt-40 lg:w-[500px] md:w-[500px] md:left-[12rem] absolute lg:left-1/3 lg:mx-auto lg:-mt-56 z-50 flex flex-col gap-6"
       >
         <!-- Title + Toggle Button -->
         <div class="flex justify-between items-center">
@@ -85,6 +86,7 @@
           ></div>
 
           <input
+            id="input-text"
             type="text"
             placeholder="Create a new todo..."
             class="w-full h-full font-josefin outline-none bg-gray50 dark:bg-navy900 text-black dark:text-gray600 placeholder:text-navy850"
@@ -93,17 +95,19 @@
 
         <!-- Todo List -->
         <div class="w-full h-72 bg-white dark:bg-navy900 rounded flex flex-col">
-          <ul class="flex-1 overflow-y-auto">
+          <ul id="list" class="flex-1 overflow-y-auto">
             <!-- Example Todo Item 1 -->
             <li
               class="w-full h-12 border-b border-gray300 dark:border-navy850 flex items-center px-4 gap-4"
             >
               <div
-                class="w-5 h-5 border-2 border-gray300 dark:border-navy850 bg-checkGradient rounded-full"
-              ></div>
+                class="w-5 h-5 flex justify-center items-center border-2 border-gray300 dark:border-navy850 bg-checkGradient rounded-full"
+              >
+                <img src="/images/icon-check.svg" alt="done task" />
+              </div>
 
               <p
-                class="flex-1 text-gray400 font-josefin dark:text-navy850 line-through"
+                class="flex-1 text-gray300 font-josefin dark:text-navy850 line-through"
               >
                 Complete online JavaScript course
               </p>
@@ -118,24 +122,7 @@
               class="w-full h-12 border-b border-gray300 dark:border-navy850 flex items-center px-4 gap-4"
             >
               <div
-                class="w-5 h-5 border-2 border-white dark:border-navy850 rounded-full"
-              ></div>
-
-              <p class="flex-1 text-gray400 font-josefin dark:text-purple300">
-                Complete online JavaScript course
-              </p>
-
-              <button>
-                <img src="../images/icon-cross.svg" alt="Delete todo" />
-              </button>
-            </li>
-
-            <!-- Example Todo Item 3 -->
-            <li
-              class="w-full h-12 border-b border-gray300 dark:border-navy850 flex items-center px-4 gap-4"
-            >
-              <div
-                class="w-5 h-5 border-2 border-white dark:border-navy850 rounded-full"
+                class="w-5 h-5 border-2 border-white dark:border-navy850 rounded-full cursor-pointer hover:border-blue500 dark:hover:border-blue500"
               ></div>
 
               <p class="flex-1 text-gray400 font-josefin dark:text-purple300">
@@ -152,15 +139,15 @@
           <div
             class="w-full h-12 border-t border-gray300 dark:border-navy850 font-josefin flex items-center justify-between px-4 text-black dark:text-gray600 text-sm"
           >
-            <span>1 item left</span>
+            <span id="remain">0 item left</span>
 
             <div class="flex gap-4">
-              <button class="text-blue-500">All</button>
-              <button>Active</button>
-              <button>Completed</button>
+              <button id="all-btn" class="text-blue-500">All</button>
+              <button id="active-btn">Active</button>
+              <button id="completed-btn">Completed</button>
             </div>
 
-            <button>Clear Completed</button>
+            <button id="clear-all-completed">Clear Completed</button>
           </div>
         </div>
 
